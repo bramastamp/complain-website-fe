@@ -1,4 +1,5 @@
 <template>
+  <MainLayout>
   <div class="container mt-5">
     <h2>Buat Pengaduan Baru</h2>
     <div class="alert alert-success" v-if="successMessage">{{ successMessage }}</div>
@@ -41,12 +42,17 @@
       <button type="submit" class="btn btn-primary">Kirim Pengaduan</button>
     </form>
   </div>
+  </MainLayout>
 </template>
 
 <script>
 import axios from 'axios'
+import MainLayout from '../layouts/MainLayout.vue'
 
 export default {
+  components: {
+    MainLayout
+  },
   data() {
     return {
       judul: '',
@@ -79,6 +85,8 @@ export default {
         this.kategori_id = ''
         this.is_anonymous = false
         this.errorMessage = ''
+        this.$router.push('/dashboard')
+
       } catch (error) {
         this.errorMessage = 'Gagal mengirim pengaduan. Pastikan semua data valid.'
         console.error(error)
